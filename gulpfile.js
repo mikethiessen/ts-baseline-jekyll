@@ -22,6 +22,30 @@ var gulp = require('gulp'),
         dist: 'dist'
     };
 
+const child = require('child_process');
+const gutil = require('gulp-util');
+
+/* ----------------------------------------------------------------------- */
+/* Jekyll Functions */
+/* ----------------------------------------------------------------------- */
+
+gulp.task('jekyll', () => {
+  const jekyll = child.spawn('jekyll', ['serve',
+    '--watch',
+    '--incremental',
+    '--drafts'
+  ]);
+
+  const jekyllLogger = (buffer) => {
+    buffer.toString()
+      .split(/\n/)
+      .forEach((message) => gutil.log('Jekyll: ' + message));
+  };
+
+  jekyll.stdout.on('data', jekyllLogger);
+  jekyll.stderr.on('data', jekyllLogger);
+});
+
 
 /* ----------------------------------------------------------------------- */
 /* Styleguide Generator https://github.com/straker/livingcss */ 
@@ -259,9 +283,7 @@ livingcss(dest.src + '/styles/**/*.scss', dest.dist + '/styleguide', {
 (function () {
 
     var files = [
-            dest.src + '/**',
             dest.src + '/.htaccess',
-            '!' + dest.src + '/**/*.md',
             '!' + dest.src + '/fonts/',
             '!' + dest.src + '/images/sprites/',
             '!' + dest.src + '/images/sprites/**',
@@ -340,6 +362,7 @@ livingcss(dest.src + '/styles/**/*.scss', dest.dist + '/styleguide', {
         'js-plugin',
         'svg-sprite',
         'images',
+        'jekyll',
         'watch'
     ];
 
@@ -358,7 +381,8 @@ livingcss(dest.src + '/styles/**/*.scss', dest.dist + '/styleguide', {
         'sass--build',
         'js-main--build',
         'js-plugin--build',
-        'copy--build'
+        'copy--build',
+        'jekyll'
     ];
 
     gulp.task('build', tasks);
