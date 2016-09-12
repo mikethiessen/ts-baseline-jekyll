@@ -11,6 +11,9 @@ Baseline contains patterns to assist with the creation of basic layout, includin
 ## LIVING STYLE GUIDE
 The Gulp file includes a script that will generate a style guide from the SASS files. It uses LivingCSS (https://github.com/straker/livingcss). It uses /src/styleguide.hb as a template and outputs a file at /dist/styleguide.html
 
+## JEKYLL - BUILDING PAGES AND CONTENT
+Jekyll config files are included with the Gulp build. Jekyll is used to generate static websites from CSV or JSON data.
+
 ##### Row Layout
 The row pattern consists of a single row the contains multiple columns. The parent class `.row` acts as a semantic clear fix for the floated elements and the class `.col` identifies each individual column in the row. Classes are available to style width of each column in the form of a variant class where the width is expressed as a fraction. The highest denominator available is fifths and the fractions should always be reduced (i.e. `.col--2/4` is not a valid class and will need to be written as `.col--1/2`). Spacing between columns is optional and can be added by using the state class `.has-margin` on the parent row.
 ```
