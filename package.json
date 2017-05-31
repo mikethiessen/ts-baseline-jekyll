@@ -8,9 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://grantg@gitlab.thinkshiftinc.com/grantg/baseline.git"
+    "url": "https://github.com/mikethiessen/ts-baseline-jekyll.git"
   },
-  "author": "Grant Geard (mostly) and Mike Thiessen",
+  "author": "Grant Geard and Mike Thiessen",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.12.1",
